@@ -178,6 +178,7 @@ bool u_bDoCalibration = false;
 double l_version =  18.1;
 double l_currentVersion;
 bool u_bDump;
+
 // An elegant way to switch debug messages on and off without recompiling the sequence can be
 //   done by entering the debug mask in the windows registry, e.g. into
 //    \\HKEY_LOCAL_MACHINE\\SOFTWARE\\Siemens\\Numaris4\\Config\\Modality\\Sequence\\DEBUG_USER_SEQUENCE
@@ -222,6 +223,7 @@ FM_MP2RAGE::FM_MP2RAGE()
 ,duration										(0)
 ,DephGradAmpl									(0)
 ,readMoment										(0)
+, m_dfatcoeff									(1.0)
 
 
 , m_FirstSignal                                 (SEQ::SIGNAL_NONE)
@@ -585,6 +587,7 @@ NLSStatus FM_MP2RAGE::initialize (SeqLim &rSeqLim)
 
 	PARAM("Echo Train Length","", &u_lETL, 1, 256 , 1, 128,"Calibration square size");
 
+
 	PARAM_GROUP();
 	PARAM_SELECT("Orientation Nav.",&u_lOrientation1, 1 ); 
 	OPTION("X",1);
@@ -846,7 +849,7 @@ if (rMrProt.gradSpec().isGSWDMode()) m_dMinRiseTime =  rMrProt.gradSpec().GSWDMi
 		m_sRFWatArray[i].sRFWatTab.setDuration             (60);
 		
 		m_sRFWatArray[i].sRFWatTab.setInitialPhase         (0);
-		m_sRFWatArray[i].sRFWatTab.setFlipAngle            (coeff[i]*rMrProt.flipAngleArray()[1]/coefBin);
+		m_sRFWatArray[i].sRFWatTab.setFlipAngle            (coeff[i]*rMrProt.flipAngleArray()[0]/coefBin);
 		
 		
 		m_sRFWatArray[i].sRFWatTab.setSamples              (60);

@@ -334,7 +334,7 @@ namespace SEQ_NAMESPACE
 		int		   m_timeBwPulses							   ;
 		long	   u_lFWSEopt							   ;
 		int coefBin;
-
+		double		m_dfatcoeff								;
 		// Gradient Amplitude
 		long m_dGradMaxAmplitude							   ;
 		long GradientAmplitudeFOV							   ;
