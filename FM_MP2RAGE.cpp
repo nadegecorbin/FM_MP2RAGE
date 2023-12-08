@@ -469,7 +469,7 @@ NLSStatus FM_MP2RAGE::initialize (SeqLim &rSeqLim)
 	//. Define properties of excitation
 	//. --------------------------------------------------------------------------------------
 	//rSeqLim.setFlipAngle                        (     5.000,  180.000,    1.000,   15.000)  ;
-	for (unsigned lContrast = 0; lContrast < 2; lContrast++)
+	for (unsigned lContrast = 0; lContrast < 4; lContrast++)
 	{
 		rSeqLim.setFlipAngleArray            (               lContrast,     1.000,  90.000,    1.000,   7.000) ;
 	}
@@ -820,11 +820,11 @@ if (rMrProt.gradSpec().isGSWDMode()) m_dMinRiseTime =  rMrProt.gradSpec().GSWDMi
 		if((i==1)||(i==3)||(i==5)){
 			
 			m_sRFArray[i].sRFTab.setInitialPhase         (180);
-			m_sRFArray[i].sRFTab.setFlipAngle            (4*coeff[i]*rMrProt.flipAngleArray()[1]/coefBin);
+			m_sRFArray[i].sRFTab.setFlipAngle            (coeff[i]*rMrProt.flipAngleArray()[1]/coefBin);
 			
 		}
 		else{
-			m_sRFArray[i].sRFTab.setFlipAngle            (4*coeff[i]*rMrProt.flipAngleArray()[1]/coefBin);
+			m_sRFArray[i].sRFTab.setFlipAngle            (coeff[i]*rMrProt.flipAngleArray()[1]/coefBin);
 			m_sRFArray[i].sRFTab.setInitialPhase         (0);
 		}
 
